@@ -14,11 +14,7 @@ class CompanyRepository implements CrudInterface
     return Company::all();
   }
 
-  public function get($id){
-    return "Something";
-  }
-
-  public function authenticate_employee(array $data){
+  public function fetch_table(){
     return "Something";
   }
 
@@ -30,7 +26,7 @@ class CompanyRepository implements CrudInterface
     return "Something";
   }
 
-  public function delete($id){
+  public function destroy($id){
     return "Something";
   }
 

@@ -27,7 +27,10 @@ Route::get('/companies/fetch_data', [CompanyController::class, 'fetch_data'])->n
 Route::post('check', [AuthController::class, 'check_employee'])->name('auth.login');
 Route::get('navbar', [AuthController::class, 'navbar'])->name('layouts.navbar.topbar');
 Route::get('/employee', [AuthController::class, 'employee_profile'])->name('employees.index')->middleware('employeeLoggedIn');
+Route::get('/company', [AuthController::class, 'company_profile'])->name('companies.index')->middleware('employeeLoggedIn');
 
 
 
 Route::get('/employeecontroller/fetch_specific_employee_in_company', [EmployeeController::class, 'fetch_specific_employee_in_company'])->name('employee.fetch_specific_employee_in_company')->middleware('employeeLoggedIn');
+
+

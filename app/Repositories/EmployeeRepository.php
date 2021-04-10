@@ -19,7 +19,6 @@ class EmployeeRepository
 
   public function fetch_table(){
     $session_company_id = session()->get('companyId');
-
     $data = Employee::where('company_id', $session_company_id)->latest()->get();
     return DataTables::of($data)->addIndexColumn()->addColumn('action', function($row){
         $actionBtn = '
@@ -38,7 +37,6 @@ class EmployeeRepository
 
           return $actionBtn;
       })->rawColumns(['action'])->make(true);
-    return "Something";
   }
 
   
@@ -50,7 +48,7 @@ class EmployeeRepository
     return "Something";
   }
 
-  public function delete($id){
+  public function destroy($id){
     return "Something";
   }
 

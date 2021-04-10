@@ -40,6 +40,6 @@
           searchable: true
         },
       ],
-    });
+    }); 
   }
 </script>
