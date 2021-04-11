@@ -3,6 +3,7 @@
 @section('content')
   <div class="container">
     <div class="card" style="margin-top: 50px;">
+    @include('alerts.success')
       <div class="card-header">
         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addModal">Add Employee</button>
       </div>
@@ -29,6 +30,8 @@
     
   </div>
   @include('employees.add-modal')
+  @include('employees.edit-modal')
+  @include('employees.deactivate-modal')
   @push('js')
     @include('scripts.employee-js')
   @endpush

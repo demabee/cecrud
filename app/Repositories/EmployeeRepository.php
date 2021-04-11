@@ -29,19 +29,28 @@ class EmployeeRepository
             <i class="fa fa-eye p-1"></i>
           </button>'
           .
-          '<button type="button" id="edit-employee" rel="tooltip" class="btn btn-success btn-icon btn-sm mx-1" data-id="'. $row->id .'" data-original-title="" title="" data-toggle="modal" data-target="#modal-edit-employee">
+          '<button type="button" id="edit-employee" rel="tooltip" class="btn btn-success btn-icon btn-sm mx-1" data-id="'. $row->id .'" data-original-title="" title="" data-toggle="modal" data-target="#editModal">
             <i class="fa fa-edit p-1"></i>
-          </button>'
-          .
-          '<button type="button" id="delete-employee" rel="tooltip" class="btn btn-danger btn-icon btn-sm mx-1" data-id="'. $row->id .'" data-original-title="" title="" data-toggle="modal" data-target="#modal-delete-employee">
-            <i class="far fa-trash-alt p-1"></i></i>
-          </button>'
+          </button>'          
           ;
 
+        ($row->is_active == 1) ?
+        $actionBtn .= '<button type="button" id="deactivate-employee" rel="tooltip" class="btn btn-danger btn-icon btn-sm mx-1" data-id="'. $row->id .'" data-original-title="" title="" data-toggle="modal" data-target="#deactivateModal">
+            <i class="far fa-trash-alt p-1"></i></i>
+          </button>'
+        :
+        $actionBtn .= '<button type="button" id="reactivate-employee" rel="tooltip" class="btn btn-primary btn-icon btn-sm mx-1" data-id="'. $row->id .'" data-original-title="" title="" data-toggle="modal" data-target="#reactivateModal">
+            <i class="fas fa-check p-1"></i></i>
+          </button>';
           return $actionBtn;
       })->rawColumns(['action'])->make(true);
   }
 
+  public function get($id){
+    $employee = Employee::find($id);
+
+    return $employee;
+  }
   
   public function store(Object $data){
     $password = Str::random(8);
@@ -75,12 +84,29 @@ class EmployeeRepository
   }
 
   public function update(Object $data){
-    
-    return "Something";
+    $employee = Employee::find($data->id);
+
+    $message = "Successfully updated ". $employee->first_name ." ". $employee->last_name ."'s information.";
+
+    $employee->first_name = $data->first_name;
+    $employee->last_name = $data->last_name;
+    $employee->email = $data->email;
+    $employee->phone = $data->phone;
+
+    $employee->save();
+
+    return $message;
   }
 
   public function destroy($id){
-    return "Something";
+    $employee = Employee::find($id);
+    $message = "Deactivated employee: ". $employee->first_name ." ". $employee->last_name .".";
+    $employee->is_active = false;
+
+    $employee->save();
+
+
+    return $message;
   }
 
 }

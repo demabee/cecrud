@@ -21,6 +21,10 @@ class CompanyRepository implements CrudInterface
     return "Something";
   }
 
+  public function get($id){
+    return "Something";
+  }
+
   public function store(Object $data){
     return "Something";
   }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Requests\AddEmployee;
+use App\Http\Requests\UpdateEmployee;
 use App\Repositories\EmployeeRepository;
 
 
@@ -31,8 +32,27 @@ class EmployeeController extends Controller
 
   public function add_employee(AddEmployee $request){
     if($request->ajax()){
-      return $this->employee->store($request);
+      $employee = $this->employee->store($request);
+
+      return response()->json($employee);
     }
   }
 
+  public function fetch_employee(Request $request){
+    if($request->ajax()){
+      return $this->employee->get($request->id);
+    }
+  }
+
+  public function update_employee(UpdateEmployee $request){
+    if($request->ajax()){
+      return $this->employee->update($request);
+    }
+  }
+
+  public function deactivate_employee(Request $request){
+    if($request->ajax()){
+      return $this->employee->destroy($request->id);
+    }
+  }
 }

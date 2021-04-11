@@ -1,4 +1,4 @@
-<div class="modal fade" id="addModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered modal-lg">
     <div class="modal-content">
       <div class="modal-header">
@@ -10,26 +10,26 @@
       <div class="modal-body">
         <div class="form-group row">
           <div class="col-lg-6">
-            <input type="text" class="form-control" placeholder="First Name" id="firstName" required>
+            <input type="text" class="form-control" placeholder="First Name" id="edit-firstName">
           </div>
           <div class="col-lg-6">
-            <input type="text" class="form-control" placeholder="Last Name" id="lastName" required>
+            <input type="text" class="form-control" placeholder="Last Name" id="edit-lastName">
           </div>
         </div>
         <div class="form-group row">
           <div class="col-lg-12">
-            <input type="email" class="form-control" placeholder="Email Address" id="email" required>
+            <input type="email" class="form-control" placeholder="Email Address" id="edit-email">
           </div>
         </div>
         <div class="form-group row">
           <div class="col-lg-12">
-            <input type="tel" class="form-control" placeholder="Phone Number" id="phone" pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}">
+            <input type="tel" class="form-control" placeholder="Phone Number" id="edit-phone" pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}">
           </div>
         </div>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary" id="addEmployee">Submit</button>
+        <button type="button" class="btn btn-primary" id="editEmployee">Update</button>
       </div>
     </div>
   </div>
