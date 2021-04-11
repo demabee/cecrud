@@ -25,7 +25,7 @@
 
   function validate_logo(a, b, data){
     if(a == b){
-      $('#company_logo').attr('src', data);
+      $('#company_logo').attr('src', `{{ asset('storage/images/') }}/${data}`);
     }
   }
 

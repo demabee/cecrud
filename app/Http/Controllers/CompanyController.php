@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\UpdateCompany;
 use App\Repositories\CompanyRepository;
 
 class CompanyController extends Controller
@@ -20,5 +21,10 @@ class CompanyController extends Controller
 
       return response()->json($companies);
     }
+  }
+
+  function update_company(UpdateCompany $request){
+    $this->company->update($request);
+    return redirect('/company')->with('message', 'Successfully Updated the Companies information.');
   }
 }

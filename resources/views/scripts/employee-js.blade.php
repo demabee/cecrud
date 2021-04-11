@@ -27,7 +27,6 @@
         { data: 'phone', name: 'contact' },
         { data: 'is_active', name: 'status',
           "fnCreatedCell": function (nTd, sData, oData, iRow, iCol) {
-            console.log(oData.is_active);
                 if(oData.is_active == 1){
                   $(nTd).html('<span class="badge rounded-pill bg-success text-white">Active</span>');
                 }
@@ -67,6 +66,7 @@
         $('#lastName').val('');
         $('#email').val('');
         $('#phone').val('');
+        $('#employee-table').DataTable().ajax.reload();
       }
     })
   });

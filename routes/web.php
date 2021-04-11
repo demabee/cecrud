@@ -22,8 +22,6 @@ Route::get('/', function () {
 
 Route::get('/login', [AuthController::class, 'view_login'])->name('login')->middleware('AlreadyLoggedIn');
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
-Route::get('/companies/fetch_data', [CompanyController::class, 'fetch_data'])->name('companies.fetch_data');
-
 Route::post('check', [AuthController::class, 'check_employee'])->name('auth.login');
 Route::get('navbar', [AuthController::class, 'navbar'])->name('layouts.navbar.topbar');
 Route::get('/employee', [AuthController::class, 'employee_profile'])->name('employees.index')->middleware('employeeLoggedIn');
@@ -33,5 +31,9 @@ Route::get('/company', [AuthController::class, 'company_profile'])->name('compan
 
 Route::get('/employeecontroller/fetch_specific_employee_in_company', [EmployeeController::class, 'fetch_specific_employee_in_company'])->name('employee.fetch_specific_employee_in_company')->middleware('employeeLoggedIn');
 Route::post('/employee/add', [EmployeeController::class, 'add_employee'])->name('employee.add')->middleware('employeeLoggedIn');
+
+
+Route::get('/companies/fetch_data', [CompanyController::class, 'fetch_data'])->name('companies.fetch_data');
+Route::put('/company/update', [CompanyController::class, 'update_company'])->name('company.update');
 
 

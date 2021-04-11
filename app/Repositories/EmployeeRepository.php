@@ -74,7 +74,8 @@ class EmployeeRepository
     return $message;
   }
 
-  public function update(array $data){
+  public function update(Object $data){
+    
     return "Something";
   }
 

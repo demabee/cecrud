@@ -8,6 +8,7 @@ use App\Models\Employee;
 use App\Models\Company;
 use App\Http\Requests\EmployeeRequest;
 use App\Repositories\EmployeeRepository;
+use Illuminate\Support\Facades\Storage;
 
 use Session;
 
@@ -20,7 +21,7 @@ class AuthController extends Controller
   function check_employee(EmployeeRequest $request){
     $employee = Employee::where('email', $request->email)->first();
     $company = Company::where('id', $employee->company_id)->first();
-    
+
     if($employee != null){
       if($this->pass_validation($request->password, $employee->password)){
         if($this->is_active($employee->is_active)){
@@ -85,4 +86,6 @@ class AuthController extends Controller
       return view('companies.index', compact('employee', 'company'));
     }
   }
+
+
 }
