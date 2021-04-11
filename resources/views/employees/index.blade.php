@@ -4,7 +4,7 @@
   <div class="container">
     <div class="card" style="margin-top: 50px;">
       <div class="card-header">
-        <button class="btn btn-primary" id="add-employee">Add Employee</button>
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addModal">Add Employee</button>
       </div>
       <div class="card-body">
         <div class="table-responsive">
@@ -28,6 +28,7 @@
     </div>
     
   </div>
+  @include('employees.add-modal')
   @push('js')
     @include('scripts.employee-js')
   @endpush

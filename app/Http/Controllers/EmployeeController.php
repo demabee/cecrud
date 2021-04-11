@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\AddEmployee;
 use App\Repositories\EmployeeRepository;
+
 
 class EmployeeController extends Controller
 {
@@ -24,6 +26,12 @@ class EmployeeController extends Controller
   public function fetch_specific_employee_in_company(Request $request){
     if($request->ajax()){
       return $this->employee->fetch_table();
+    }
+  }
+
+  public function add_employee(AddEmployee $request){
+    if($request->ajax()){
+      return $this->employee->store($request);
     }
   }
 

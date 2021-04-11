@@ -1,5 +1,6 @@
 
 <script>
+  var token = $('input[name="_token"]').val();
 
   $(document).ready(function(){
     fetch_specific_employee_in_company();
@@ -42,4 +43,32 @@
       ],
     }); 
   }
+
+  $('#addEmployee').on('click', function(){
+    var firstName = $('#firstName').val();
+    var lastName = $('#lastName').val();
+    var email = $('#email').val();
+    var phone = $('#phone').val();
+
+    $.ajax({
+      url: "{{ route('employee.add') }}",
+      method: "POST",
+      data: {
+        first_name: firstName,
+        last_name: lastName,
+        email: email,
+        phone: phone,
+        _token: token
+      },
+      success: function(data){
+        console.log(data);
+        $('#addModal').modal('hide');
+        $('#firstName').val('');
+        $('#lastName').val('');
+        $('#email').val('');
+        $('#phone').val('');
+      }
+    })
+  });
+
 </script>

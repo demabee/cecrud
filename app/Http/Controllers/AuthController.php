@@ -17,10 +17,10 @@ class AuthController extends Controller
     return view('auth.login');
   }
 
-  function check_employee(Request $request){
+  function check_employee(EmployeeRequest $request){
     $employee = Employee::where('email', $request->email)->first();
-    
     $company = Company::where('id', $employee->company_id)->first();
+    
     if($employee != null){
       if($this->pass_validation($request->password, $employee->password)){
         if($this->is_active($employee->is_active)){

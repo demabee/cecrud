@@ -18,7 +18,11 @@ class CompanyRepository implements CrudInterface
     return "Something";
   }
 
-  public function store(array $data){
+  public function store(Object $data){
+    return "Something";
+  }
+
+  public function mail(array $data){
     return "Something";
   }
 
