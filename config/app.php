@@ -237,7 +237,12 @@ return [
         'DataTables' => Yajra\DataTables\Facades\DataTables::class,
 
         //Image
-        'Image' => Intervention\Image\Facades\Image::class
+        'Image' => Intervention\Image\Facades\Image::class,
+
+        //Custom Helper
+        'StoreImage' => App\Helpers\StoreImage::class,
+        'StoreCompany' => App\Helpers\StoreCompany::class,
+        'StoreEmployee' => App\Helpers\StoreEmployee::class,
 
     ],
 

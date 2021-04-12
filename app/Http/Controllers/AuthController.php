@@ -19,7 +19,7 @@ class AuthController extends Controller
   }
 
   function check_employee(EmployeeRequest $request){
-    $employee = Employee::where('email', $request->email)->first();
+    $employee = Employee::where('emp_email', $request->email)->first();
     $company = Company::where('id', $employee->company_id)->first();
 
     if($employee != null){
@@ -55,7 +55,7 @@ class AuthController extends Controller
   function logout(){
     if(Session::has('LoggedEmployee')){
       Session::pull('LoggedEmployee');
-      return redirect('login');
+      return redirect('/');
     }
   }
 

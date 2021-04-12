@@ -12,10 +12,10 @@ class ExampleTest extends TestCase
      *
      * @return void
      */
-    public function testBasicTest()
-    {
-        $response = $this->get('/');
+    public function fetch_specific_employee_in_company(){
+      
+      $response = $this->get('/employeecontroller/fetch_specific_employee_in_company');
 
-        $response->assertStatus(200);
+      $response->assertStatus(200);
     }
 }

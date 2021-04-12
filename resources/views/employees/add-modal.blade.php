@@ -18,7 +18,7 @@
         </div>
         <div class="form-group row">
           <div class="col-lg-12">
-            <input type="email" class="form-control" placeholder="Email Address" id="email" required>
+            <input type="email" class="form-control" placeholder="Email Address" id="emp_email" required>
           </div>
         </div>
         <div class="form-group row">

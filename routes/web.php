@@ -17,7 +17,7 @@ use App\Http\Controllers\EmployeeController;
 */
 
 Route::get('/', function () {
-    return view('auth.login');
+    return view('layouts.tab');
 })->middleware('AlreadyLoggedIn');
 
 Route::get('/login', [AuthController::class, 'view_login'])->name('login')->middleware('AlreadyLoggedIn');
@@ -38,6 +38,7 @@ Route::get('/employee/deactivate', [EmployeeController::class, 'deactivate_emplo
 
 
 Route::get('/companies/fetch_data', [CompanyController::class, 'fetch_data'])->name('companies.fetch_data');
+Route::post('/companies/add', [CompanyController::class, 'add_company'])->name('companies.add');
 Route::put('/company/update', [CompanyController::class, 'update_company'])->name('company.update');
 
 

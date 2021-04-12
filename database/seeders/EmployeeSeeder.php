@@ -22,7 +22,7 @@ class EmployeeSeeder extends Seeder
         Db::table('employees')->insert([
           'first_name' => $faker->firstName($gender),
           'last_name' => $faker->lastName,
-          'email' => $faker->email,
+          'emp_email' => $faker->email,
           'phone' => $faker->e164PhoneNumber,
           'password' => Hash::make('12341234'),
           'company_id' => $index

@@ -23,7 +23,7 @@
           data: 'first_name', name: 'first_name'
         },
         { data: 'last_name', name: 'last_name' },
-        { data: 'email', name: 'email' },
+        { data: 'emp_email', name: 'email' },
         { data: 'phone', name: 'contact' },
         { data: 'is_active', name: 'status',
           "fnCreatedCell": function (nTd, sData, oData, iRow, iCol) {
@@ -47,7 +47,7 @@
   $('#addEmployee').on('click', function(){
     var firstName = $('#firstName').val();
     var lastName = $('#lastName').val();
-    var email = $('#email').val();
+    var email = $('#emp_email').val();
     var phone = $('#phone').val();
 
     $.ajax({
@@ -56,7 +56,7 @@
       data: {
         first_name: firstName,
         last_name: lastName,
-        email: email,
+        emp_email: email,
         phone: phone,
         _token: token
       },
@@ -64,7 +64,7 @@
         $('#addModal').modal('hide');
         $('#firstName').val('');
         $('#lastName').val('');
-        $('#email').val('');
+        $('#emp_email').val('');
         $('#phone').val('');
         $('#success').removeClass('d-none');
         $('#success').removeClass('d-block');
@@ -87,7 +87,7 @@
       success: function(data){
         $('#edit-firstName').attr('value', data.first_name);
         $('#edit-lastName').attr('value', data.last_name);
-        $('#edit-email').attr('value', data.email);
+        $('#edit-email').attr('value', data.emp_email);
         $('#edit-phone').attr('value', data.phone);
         $('#editEmployee').attr('data-id', data.id);
       }
@@ -109,7 +109,7 @@
         id,
         first_name: firstName,
         last_name: lastName,
-        email: email,
+        emp_email: email,
         phone: phone,
         _token: token
       },

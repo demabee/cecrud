@@ -4,10 +4,12 @@ namespace App\Repositories;
 
 //use Your Model
 use App\Models\Employee;
-use Illuminate\Support\Facades\Hash;
+
 use Illuminate\Support\Facades\Mail;
 use App\Mail\MailPassword;
 use Illuminate\Support\Str;
+use StoreEmployee;
+
 use DataTables;
 use Auth;
 
@@ -24,11 +26,7 @@ class EmployeeRepository
     $session_company_id = session()->get('companyId');
     $data = Employee::where('company_id', $session_company_id)->latest()->get();
     return DataTables::of($data)->addIndexColumn()->addColumn('action', function($row){
-        $actionBtn = '
-          <button type="button" id="view-employee" rel="tooltip" class="btn btn-info btn-icon btn-sm text-white mx-1" data-id="'. $row->id .'" data-original-title="View Employee" title="" data-toggle="modal" data-target="#modal-view-employee">
-            <i class="fa fa-eye p-1"></i>
-          </button>'
-          .
+        $actionBtn = 
           '<button type="button" id="edit-employee" rel="tooltip" class="btn btn-success btn-icon btn-sm mx-1" data-id="'. $row->id .'" data-original-title="" title="" data-toggle="modal" data-target="#editModal">
             <i class="fa fa-edit p-1"></i>
           </button>'          
@@ -55,20 +53,12 @@ class EmployeeRepository
   public function store(Object $data){
     $password = Str::random(8);
 
-    $employee = new Employee;
-    $employee->first_name = $data->first_name;
-    $employee->last_name = $data->last_name;
-    $employee->email = $data->email;
-    $employee->phone = $data->phone;
-    $employee->company_id = session()->get('companyId');
-    $employee->password = Hash::make($password);
-    
-    $employee->save();
+    StoreEmployee::store_employee($data, session()->get('companyId'), $password);
     
     $details = [
       'first_name' => $data->first_name,
       'last_name' => $data->last_name,
-      'email' => $data->email,
+      'email' => $data->emp_email,
       'password' => $password,
     ];
 
@@ -84,13 +74,13 @@ class EmployeeRepository
   }
 
   public function update(Object $data){
-    $employee = Employee::find($data->id);
+    $employee = $this->get($data->id);
 
     $message = "Successfully updated ". $employee->first_name ." ". $employee->last_name ."'s information.";
 
     $employee->first_name = $data->first_name;
     $employee->last_name = $data->last_name;
-    $employee->email = $data->email;
+    $employee->emp_email = $data->emp_email;
     $employee->phone = $data->phone;
 
     $employee->save();
@@ -99,7 +89,7 @@ class EmployeeRepository
   }
 
   public function destroy($id){
-    $employee = Employee::find($id);
+    $employee = $this->get($data->id);
     $message = "Deactivated employee: ". $employee->first_name ." ". $employee->last_name .".";
     $employee->is_active = false;
 

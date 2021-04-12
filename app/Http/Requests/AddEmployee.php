@@ -26,7 +26,7 @@ class AddEmployee extends FormRequest
         return [
             'first_name' => 'required',
             'last_name' => 'required',
-            'email' => 'required|email|unique:employees',
+            'emp_email' => 'required|email|unique:employees',
             'phone' => 'required',
         ];
     }
